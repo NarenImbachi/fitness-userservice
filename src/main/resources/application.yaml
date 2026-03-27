@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: userservice
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/fitness_user_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${DB_HIBERNATE_DDL_AUTO:create-drop}
+    properties:
+      hibernate:
+        dialect: ${DB_HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
