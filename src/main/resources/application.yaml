@@ -14,3 +14,13 @@ spring:
     properties:
       hibernate:
         dialect: ${DB_HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true  
+
+server:
+  port: ${PORT:8081}

@@ -32,4 +32,15 @@ public class UserController {
     public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody RegisterRequest request) {   
         return ResponseEntity.ok(userService.registerUser(request));
     }
+
+    /**
+     * Endpoint para validar si un usuario existe por su userId. Retorna true si el usuario existe, false en caso contrario.
+     * Este endpoint es útil para otros servicios que necesitan verificar la existencia de un usuario sin necesidad de obtener toda su información.
+     * @param userId El ID del usuario a validar.
+     * @return ResponseEntity<Boolean> indicando si el usuario existe o no.
+     */
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {   
+        return ResponseEntity.ok(userService.existByUserId(userId));
+    }
 }
