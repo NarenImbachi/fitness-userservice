@@ -11,6 +11,7 @@ public class UserResponse {
     private String password;
     private String firstName;
     private String lastName;
+    private String keycloakId;
     private UserRole role = UserRole.USER;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

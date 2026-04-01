@@ -34,8 +34,18 @@ public class UserService {
     
     public UserResponse registerUser(RegisterRequest request) {
 
+        // Validamos si el usuario ya existe por email, si existe retornamos su información, si no existe lo creamos
         if(userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            User existingUser = userRepository.findByEmail(request.getEmail());
+            UserResponse response = new UserResponse();
+            response.setId(existingUser.getId());
+            response.setEmail(existingUser.getEmail());
+            response.setFirstName(existingUser.getFirstName());
+            response.setLastName(existingUser.getLastName());
+            response.setCreatedAt(existingUser.getCreatedAt());
+            response.setUpdatedAt(existingUser.getUpdatedAt());
+            response.setKeycloakId(existingUser.getKeycloakId());
+            return response;
         }
 
         User user = new User();
@@ -43,7 +53,7 @@ public class UserService {
         user.setPassword(request.getPassword());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-
+        user.setKeycloakId(request.getKeycloakId());
         User savedUser = userRepository.save(user);
 
         UserResponse response = new UserResponse();
@@ -58,6 +68,6 @@ public class UserService {
 
     public Boolean existByUserId(String userId) {
         log.info("Calling user validation API for userId: {}", userId);
-        return userRepository.existsById(userId);
+        return userRepository.existsByKeycloakId(userId);
     }
 }
