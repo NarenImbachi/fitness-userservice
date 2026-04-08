@@ -1,11 +1,11 @@
-package com.fitness.userservice.Domain.model;
+package com.fitness.userservice.domain.model;
 
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fitness.userservice.Domain.enums.UserRole;
+import com.fitness.userservice.domain.enums.UserRole;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

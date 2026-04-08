@@ -1,4 +1,4 @@
-package com.fitness.userservice.Domain.enums;
+package com.fitness.userservice.domain.enums;
 
 public enum UserRole {
     USER,

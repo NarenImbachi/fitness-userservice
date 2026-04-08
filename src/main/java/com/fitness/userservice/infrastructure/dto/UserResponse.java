@@ -1,7 +1,9 @@
-package com.fitness.userservice.dto;
+package com.fitness.userservice.infrastructure.dto;
 
 import java.time.LocalDateTime;
-import com.fitness.userservice.Domain.enums.UserRole;
+
+import com.fitness.userservice.domain.enums.UserRole;
+
 import lombok.Data;
 
 @Data

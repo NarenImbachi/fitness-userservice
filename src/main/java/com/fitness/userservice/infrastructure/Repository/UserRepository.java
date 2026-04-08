@@ -1,8 +1,11 @@
-package com.fitness.userservice.Repository;
+package com.fitness.userservice.infrastructure.Repository;
+
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.fitness.userservice.Domain.model.User;
+
+import com.fitness.userservice.domain.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
@@ -11,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     boolean existsByKeycloakId(String userId);
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
     
+    void deleteById(String id);
 }
