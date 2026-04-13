@@ -4,6 +4,8 @@ import com.fitness.userservice.app.ports.in.IUserServicePort;
 import com.fitness.userservice.app.ports.out.IUserPersistencePort;
 import com.fitness.userservice.domain.model.User;
 import com.fitness.userservice.infrastructure.dto.RegisterRequest;
+import com.fitness.userservice.infrastructure.dto.UpdateUserRequest;
+
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -74,6 +76,31 @@ public class UserService implements IUserServicePort {
     public Boolean existByUserId(String userId) {
         log.info("Calling user validation API for userId: {}", userId);
         return userPersistencePort.existsByKeycloakId(userId);
+    }
+
+    @Override
+    public User updateUser(String userId, UpdateUserRequest request) {
+        User user = userPersistencePort.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found") );
+
+        // Actualizar solo los campos que no son nulos en la petición
+        if (request.getFirstName() != null) {
+            user.setFirstName(request.getFirstName());
+        }
+        if (request.getLastName() != null) {
+            user.setLastName(request.getLastName());
+        }
+        if (request.getBirthDate() != null) {
+            user.setBirthDate(request.getBirthDate());
+        }
+        if (request.getHeight() != null) {
+            user.setHeight(request.getHeight());
+        }
+        if (request.getWeight() != null) {
+            user.setWeight(request.getWeight());
+        }
+
+        return userPersistencePort.save(user);
     }
 }
 

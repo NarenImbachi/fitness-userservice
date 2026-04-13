@@ -24,7 +24,7 @@ public class UserPersistenceAdapter implements IUserPersistencePort {
 
     @Override
     public Optional<User> findById(String userId) {
-        return userRepository.findById(userId);
+        return userRepository.findByKeycloakId(userId);
     }
 
     @Override

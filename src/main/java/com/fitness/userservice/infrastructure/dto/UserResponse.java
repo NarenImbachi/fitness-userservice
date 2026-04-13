@@ -1,5 +1,6 @@
 package com.fitness.userservice.infrastructure.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fitness.userservice.domain.enums.UserRole;
@@ -17,4 +18,7 @@ public class UserResponse {
     private UserRole role = UserRole.USER;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDate birthDate;
+    private Double height;
+    private Double weight;
 }

@@ -1,5 +1,6 @@
 package com.fitness.userservice.domain.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,4 +44,8 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    private LocalDate birthDate;
+    private Double height;
+    private Double weight;
 }
